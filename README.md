@@ -4,8 +4,10 @@ This is my solution to the front-end assignment for Etraveli Group. The original
 
 ## Process
 
+### Bootstrapping
 I bootsraped this project using [Create React App](https://github.com/facebook/create-react-app) which I find to be usefull for quickly spinning up front-end projects when prototyping, but also for longer term projects as it has great developer support and is quite configurable through add-ons like [CRACO](https://github.com/gsoft-inc/craco) (I have not needed to eject in a long time). For more details on Create React App, see the [Development](#development) section below.
 
+### UI Components
 Before writing any code, I blocked out some of the possible components in a [Figma wireframe](https://www.figma.com/file/Xuq1XB1D457fzvH8HTleBU/Wireframe?node-id=0%3A1). 
 ![Wireframe](readme_assets/wireframe.png)
 
@@ -21,6 +23,11 @@ In addittion there would need to be:
 7. Loading State
 8. Error Handling
 
+### User Stories
+Based on the [specs document](SPECS.md):
+1. As a user, I would like to see a list of all Star Wars films so that I can select one and read details about the film.
+2. As a user, I would like to be able to filter the list based on year or episode.
+3. As a user, I would like to be able to filter the list based on search criteria.
 
 ----------
 
