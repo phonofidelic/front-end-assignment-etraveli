@@ -8,6 +8,18 @@ type EpisodesListProps = {
 }
 
 export default function EpisodesList({ episodes, onEpisodeSelect }: EpisodesListProps) {
+
+  if (!episodes.length) return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%'
+    }}>
+      <div>No results found</div>
+    </div>
+  )
+
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="episodes table">

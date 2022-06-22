@@ -9,8 +9,13 @@ type EpisodeDetailProps = {
 export default function EpisodeDetail({ episode }: EpisodeDetailProps) {
 
   if (!episode) return (
-    <div>
-      No movie selected
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%'
+    }}>
+      <div>No movie selected</div>
     </div>
   )
 
