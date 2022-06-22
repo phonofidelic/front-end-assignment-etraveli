@@ -4,15 +4,16 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Typography } fro
 
 type EpisodesListProps = {
   episodes: Episode[]
+  onEpisodeSelect(episode: Episode): void
 }
 
-export default function EpisodesList({ episodes }: EpisodesListProps) {
+export default function EpisodesList({ episodes, onEpisodeSelect }: EpisodesListProps) {
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="episodes table">
         <TableBody>
           {episodes.map((episode) => (
-            <TableRow>
+            <TableRow key={episode.episode_id} onClick={() => onEpisodeSelect(episode)}>
               <TableCell>
                 <Typography variant="overline">Episode {episode.episode_id}</Typography>
               </TableCell>

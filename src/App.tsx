@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios'
 import EpisodesList from 'components/EpisodesList';
+import { Grid } from '@mui/material';
 
 const STARWARS_MOVIES_ENDPOINT = 'https://swapi.dev/api/films/?format=json'
 
@@ -21,6 +22,11 @@ function App() {
   const [episodes, setEpisodes] = useState<Episode[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null)
+
+  const handleSelectEpisode = (episode: Episode) => {
+    setSelectedEpisode(episode)
+  }
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -45,9 +51,14 @@ function App() {
   if (error) return <div>{error.message}</div>
 
   return (
-    <div>
-      <EpisodesList episodes={episodes} />
-    </div>
+    <Grid container>
+      <Grid item md={6}>
+        <EpisodesList episodes={episodes} onEpisodeSelect={handleSelectEpisode} />
+      </Grid>
+      <Grid item md={6}>
+        <div>{selectedEpisode ? selectedEpisode.title : 'No movie selected'}</div>
+      </Grid>
+    </Grid>
   );
 }
 
