@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import EpisodesList from 'components/EpisodesList';
 
 const STARWARS_MOVIES_ENDPOINT = 'https://swapi.dev/api/films/?format=json'
 
@@ -39,15 +39,14 @@ function App() {
 
     fetchMovies()
   }, [])
+  console.log('loading:', loading)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
 
   return (
     <div>
-      <ul>
-        {episodes.map((episode) => (<li key={episode.episode_id}>{episode.title}</li>))}
-      </ul>
+      <EpisodesList episodes={episodes} />
     </div>
   );
 }
