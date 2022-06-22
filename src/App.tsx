@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios'
+import { Episode } from 'common/episode.interface';
 import EpisodesList from 'components/EpisodesList';
+import EpisodeDetail from 'components/EpisodeDetail';
+
 import { Grid } from '@mui/material';
 
 const STARWARS_MOVIES_ENDPOINT = 'https://swapi.dev/api/films/?format=json'
-
-interface Episode {
-  episode_id: number;
-  release_date: string;
-  title: string;
-  opening_crawl: string
-}
 
 interface StarWarsFilmsResponse {
   count: number,
@@ -56,7 +52,7 @@ function App() {
         <EpisodesList episodes={episodes} onEpisodeSelect={handleSelectEpisode} />
       </Grid>
       <Grid item md={6}>
-        <div>{selectedEpisode ? selectedEpisode.title : 'No movie selected'}</div>
+        <EpisodeDetail episode={selectedEpisode} />
       </Grid>
     </Grid>
   );
