@@ -45,6 +45,7 @@ export default function SortMenu({ sortBy, onSortChange }: SortMenuProps) {
           height: 40,
           backgroundColor: '#fff'
         }}
+        data-testid="sort-button"
         variant="outlined"
         onClick={handleOpen}
       >

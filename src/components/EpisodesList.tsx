@@ -24,7 +24,7 @@ export default function EpisodesList({ episodes, selectedEpisode, onEpisodeSelec
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="episodes table">
-        <TableBody>
+        <TableBody data-testid="episodes-coontainer">
           {episodes.map((episode) => (
             <TableRow
               style={{ cursor: 'pointer' }}
