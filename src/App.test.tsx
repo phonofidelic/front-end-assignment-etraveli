@@ -80,4 +80,19 @@ test('renders fetched data in a list', async () => {
   }, { timeout: 3000 });
 })
 
-test.todo('displays a message if an error occurs')
+test('displays a message if an error occurs', async () => {
+  server.use(
+    rest.get(STARWARS_MOVIES_ENDPOINT, (req, res, ctx) => {
+      return res(ctx.status(500))
+    })
+  )
+
+  render(<App />)
+
+  await waitFor(() => expect(screen.getByText(/sorry, could not load movies/i)).toBeInTheDocument())
+})
+
+test.todo('sorts by episode ID by default')
+test.todo('can sort by release date')
+test.todo('can filter by title')
+test.todo('notifies the user if no results are found')

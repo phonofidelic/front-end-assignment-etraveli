@@ -54,7 +54,7 @@ function App() {
         setEpisodes(response.data.results)
         setLoading(false)
       } catch (err) {
-        console.error('Could not fetch movies:', err)
+        // console.error('Could not fetch movies:', err)
         setError(new Error('Sorry, could not load movies'))
         setLoading(false)
       }
