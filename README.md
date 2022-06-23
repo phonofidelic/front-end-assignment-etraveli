@@ -1,4 +1,6 @@
 # Front-end assignment at Etraveli Group
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/phonofidelic/front-end-assignment-etraveli/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/phonofidelic/front-end-assignment-etraveli/tree/main)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b97a56df-a476-4ca3-8fd0-eb1a3809b565/deploy-status)](https://app.netlify.com/sites/front-end-assignment-etraveli/deploys)
 ## Overview
 This is my solution to the front-end assignment for Etraveli Group. The original specs can be read [here](SPECS.md).
 
