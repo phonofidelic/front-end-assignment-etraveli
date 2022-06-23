@@ -1,6 +1,7 @@
 import React from 'react'
 import { Episode } from 'common/episode.interface'
 import { Typography } from '@mui/material'
+import { BorderLeft } from '@mui/icons-material'
 
 type EpisodeDetailProps = {
   episode: Episode | null
