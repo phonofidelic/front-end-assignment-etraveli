@@ -32,9 +32,16 @@ Based on the [specs document](SPECS.md):
 2. As a user, I would like to be able to filter the list based on year or episode.
 3. As a user, I would like to be able to filter the list based on search criteria.
 
+### Testing
+For this project, all tests are currently written as component integration tests in `App.test.tsx`. For more complex projects, I would probbaly start with unit tests at the component level. The tests can be run localy with the `yarn test` command and are also run as part of the CI workflow on pushes to the `development` branch as well as on merges to `main`.
+
+### Deployment
+The web app is deployed to [Netlify](https://www.netlify.com/) on successfull merges to `main`.
+
 ## Roadmap (todos)
 - [ ] e2e tests using [Cypress](https://www.cypress.io/)
 - [ ] Unit tests for individual components
+- [ ] Use either Redux or React Context API for global state management
 - [ ] Modal component for error notifications
 - [ ] Improved UI for loading message
 
