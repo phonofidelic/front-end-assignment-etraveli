@@ -152,6 +152,44 @@ test('can sort by release date', async () => {
   expect(children.item(0)?.textContent).toEqual('Episode 3C test1111-11-11')
 })
 
+test('can filter by title', async () => {
+  render(<App />);
+  const user = userEvent.setup()
 
-test.todo('can filter by title')
-test.todo('notifies the user if no results are found')
+  /**
+   * Check that all items are initally rendered
+   */
+  await waitFor(() => {
+    expect(screen.getByText(/a test/i)).toBeInTheDocument()
+    expect(screen.getByText(/b test/i)).toBeInTheDocument()
+    expect(screen.getByText(/c test/i)).toBeInTheDocument()
+  }, { timeout: 3000 });
+
+  await user.type(screen.getByPlaceholderText(/type to search.../i), 'B test')
+
+  /**
+   * Check that only "B test" is found
+   */
+  await waitFor(() => {
+    expect(screen.queryByText(/a test/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/b test/i)).toBeInTheDocument()
+    expect(screen.queryByText(/c test/i)).not.toBeInTheDocument()
+  }, { timeout: 3000 });
+})
+
+test('notifies the user if no results are found', async () => {
+  render(<App />);
+  const user = userEvent.setup()
+
+  await waitFor(() => {
+    expect(screen.getByText(/a test/i)).toBeInTheDocument()
+    expect(screen.getByText(/b test/i)).toBeInTheDocument()
+    expect(screen.getByText(/c test/i)).toBeInTheDocument()
+  }, { timeout: 3000 });
+
+  await user.type(screen.getByPlaceholderText(/type to search.../i), 'this should not be found')
+
+  await waitFor(() => {
+    expect(screen.getByText(/no results found/i)).toBeInTheDocument()
+  }, { timeout: 3000 });
+})

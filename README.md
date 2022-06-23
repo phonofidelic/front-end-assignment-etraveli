@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b97a56df-a476-4ca3-8fd0-eb1a3809b565/deploy-status)](https://app.netlify.com/sites/front-end-assignment-etraveli/deploys)
 
 ## Overview
-This is my solution to the front-end assignment for Etraveli Group. The original specs can be read [here](SPECS.md).
+This is my solution to the front-end assignment for Etraveli Group. The original specs can be read [here](SPECS.md). A live demo of the app can be seen [here](https://front-end-assignment-etraveli.netlify.app/).
 
 ## Process
 
@@ -35,8 +35,13 @@ Based on the [specs document](SPECS.md):
 ### Testing
 For this project, all tests are currently written as component integration tests in `App.test.tsx`. For more complex projects, I would probbaly start with unit tests at the component level. The tests can be run localy with the `yarn test` command and are also run as part of the CI workflow on pushes to the `development` branch as well as on merges to `main`.
 
+Tests are written with [testing-library](https://testing-library.com/) which is a great framework for writing tests that interact with DOM from an end-user perspective.
+
+The API endpint is mocked using [MSW](https://mswjs.io/). This allows us to controll the input data and test for diferent scenarios such as server errors.
+
+
 ### Deployment
-The web app is deployed to [Netlify](https://www.netlify.com/) on successfull merges to `main`.
+The web app is deployed to [Netlify](https://www.netlify.com/) on successfull merges to `main`. A live demo of the app can be seen [here](https://front-end-assignment-etraveli.netlify.app/).
 
 ## Roadmap (todos)
 - [ ] e2e tests using [Cypress](https://www.cypress.io/)
