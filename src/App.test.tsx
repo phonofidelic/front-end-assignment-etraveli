@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { STARWARS_MOVIES_ENDPOINT } from 'common/constants';
@@ -46,6 +47,18 @@ test('renders a loading indicator while fetching data', () => {
   expect(loadingIndicator).toBeInTheDocument();
 });
 
+test('displays a message if an error occurs', async () => {
+  server.use(
+    rest.get(STARWARS_MOVIES_ENDPOINT, (req, res, ctx) => {
+      return res(ctx.status(500))
+    })
+  )
+
+  render(<App />)
+
+  await waitFor(() => expect(screen.getByText(/sorry, could not load movies/i)).toBeInTheDocument())
+})
+
 test('renders a sort button once data is available', async () => {
   render(<App />);
 
@@ -80,19 +93,55 @@ test('renders fetched data in a list', async () => {
   }, { timeout: 3000 });
 })
 
-test('displays a message if an error occurs', async () => {
-  server.use(
-    rest.get(STARWARS_MOVIES_ENDPOINT, (req, res, ctx) => {
-      return res(ctx.status(500))
-    })
-  )
+/**
+ * Checks the order of items in the Episodes list.
+ * https://stackoverflow.com/a/66139828
+ */
+test('sorts by episode ID by default', async () => {
+  render(<App />);
 
-  render(<App />)
+  await waitFor(() => screen.getByText(/a test/i))
 
-  await waitFor(() => expect(screen.getByText(/sorry, could not load movies/i)).toBeInTheDocument())
+  const episodesContainer = screen.getByTestId('episodes-coontainer')
+  const children = episodesContainer.children
+
+  expect(children.item(0)?.textContent).toEqual('Episode 1A test3333-33-33')
+  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
+  expect(children.item(2)?.textContent).toEqual('Episode 3C test1111-11-11')
 })
 
-test.todo('sorts by episode ID by default')
-test.todo('can sort by release date')
+test('can sort by release date', async () => {
+  render(<App />);
+  const sortButton = await waitFor(() => screen.getByTestId('sort-button'))
+
+  fireEvent.click(sortButton)
+  await waitFor(async () => screen.findByText(/year/i))
+
+  /**
+   * Check that the sort menu is rendered
+   */
+  await waitFor(() => {
+    expect(screen.getByText(/Sort by$/)).toBeInTheDocument()
+    expect(screen.getByText(/Episode$/)).toBeInTheDocument()
+    expect(screen.getByText(/year/i)).toBeInTheDocument()
+  })
+
+  /**
+   * Chose the Year option
+   */
+  fireEvent.click(screen.getByText(/year/i))
+
+  const episodesContainer = screen.getByTestId('episodes-coontainer')
+  const children = episodesContainer.children
+
+  /**
+   * Check that the list is sorted by Year
+   */
+  expect(children.item(2)?.textContent).toEqual('Episode 1A test3333-33-33')
+  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
+  expect(children.item(0)?.textContent).toEqual('Episode 3C test1111-11-11')
+})
+
+test.todo('displays details of a selected episode')
 test.todo('can filter by title')
 test.todo('notifies the user if no results are found')
