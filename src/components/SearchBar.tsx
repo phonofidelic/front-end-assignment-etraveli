@@ -10,13 +10,16 @@ type SearchBarProps = {
 export default function SearchBar({ onSearch }: SearchBarProps) {
   return (
     <TextField
+      style={{
+        backgroundColor: '#fff'
+      }}
       fullWidth
       variant="outlined"
+      size="small"
       InputProps={{
         startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
-        // label: 'Type to search...'
       }}
-      label="Type to search..."
+      placeholder="Type to search..."
       onChange={(event) => onSearch(event.target.value)}
     />
   )

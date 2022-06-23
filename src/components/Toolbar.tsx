@@ -8,7 +8,8 @@ export default function Toolbar({ children }: Props) {
   return (
     <div style={{
       display: 'flex',
-      margin: 16
+      padding: 16,
+      backgroundColor: '#F5F5F5'
     }}>
       {children}
     </div>
