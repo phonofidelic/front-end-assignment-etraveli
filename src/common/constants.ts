@@ -1,0 +1,1 @@
+export const STARWARS_MOVIES_ENDPOINT = 'https://swapi.dev/api/films'

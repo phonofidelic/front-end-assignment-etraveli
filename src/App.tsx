@@ -4,6 +4,7 @@ import axios from 'axios'
 import { matchSorter } from 'match-sorter'
 import { Episode } from 'common/episode.interface';
 import { SortBy } from 'common/sortBy.enum';
+import { STARWARS_MOVIES_ENDPOINT } from 'common/constants';
 import EpisodesList from 'components/EpisodesList';
 import EpisodeDetail from 'components/EpisodeDetail';
 
@@ -11,8 +12,6 @@ import { Grid } from '@mui/material';
 import SearchBar from 'components/SearchBar';
 import Toolbar from 'components/Toolbar';
 import SortMenu from 'components/SortMenu';
-
-const STARWARS_MOVIES_ENDPOINT = 'https://swapi.dev/api/films/?format=json'
 
 interface StarWarsFilmsResponse {
   count: number,
@@ -50,8 +49,8 @@ function App() {
     const fetchMovies = async () => {
       let response;
       try {
-        response = await axios.get<StarWarsFilmsResponse>(STARWARS_MOVIES_ENDPOINT)
-        console.log('Movies response:', response.data)
+        response = await axios.get<StarWarsFilmsResponse>(`${STARWARS_MOVIES_ENDPOINT}/?format=json`)
+        // console.log('Movies response:', response.data)
         setEpisodes(response.data.results)
         setLoading(false)
       } catch (err) {
