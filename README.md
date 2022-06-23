@@ -1,6 +1,7 @@
 # Front-end assignment at Etraveli Group
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/phonofidelic/front-end-assignment-etraveli/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/phonofidelic/front-end-assignment-etraveli/tree/main)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b97a56df-a476-4ca3-8fd0-eb1a3809b565/deploy-status)](https://app.netlify.com/sites/front-end-assignment-etraveli/deploys)
+
 ## Overview
 This is my solution to the front-end assignment for Etraveli Group. The original specs can be read [here](SPECS.md).
 
@@ -31,9 +32,16 @@ Based on the [specs document](SPECS.md):
 2. As a user, I would like to be able to filter the list based on year or episode.
 3. As a user, I would like to be able to filter the list based on search criteria.
 
+## Roadmap (todos)
+- [ ] e2e tests using [Cypress](https://www.cypress.io/)
+- [ ] Unit tests for individual components
+- [ ] Modal component for error notifications
+- [ ] Improved UI for loading message
+
 ----------
 
 ## Development
+*The following is copied over from the CRA default README:*
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
