@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SortBy } from 'common/sortBy.enum'
 
-import { Button, Divider, IconButton, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
+import { Button, Divider, IconButton, ListItem, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
 
 import CloseIcon from '@mui/icons-material/Close';
 

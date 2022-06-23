@@ -53,9 +53,6 @@ function App() {
         response = await axios.get<StarWarsFilmsResponse>(STARWARS_MOVIES_ENDPOINT)
         console.log('Movies response:', response.data)
         setEpisodes(response.data.results)
-        setFilteredEpisodes(
-          response.data.results.sort((a, b) => (a[sortBy] < b[sortBy] ? -1 : 1))
-        )
         setLoading(false)
       } catch (err) {
         console.error('Could not fetch movies:', err)
@@ -66,6 +63,12 @@ function App() {
 
     fetchMovies()
   }, [])
+
+  useEffect(() => {
+    setFilteredEpisodes(
+      episodes.sort((a, b) => (a[sortBy] < b[sortBy] ? -1 : 1))
+    )
+  }, [episodes, sortBy])
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
