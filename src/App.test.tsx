@@ -115,9 +115,9 @@ test('sorts episodes by release date by default', async () => {
   const episodesContainer = screen.getByTestId('episodes-container')
   const children = episodesContainer.children
 
-  expect(children.item(0)?.textContent).toEqual('Episode 3C test1111-11-11')
-  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
-  expect(children.item(2)?.textContent).toEqual('Episode 1A test3333-33-33')
+  expect(children.item(0)?.textContent).toEqual('Episode 3Episode III - C test1111-11-11')
+  expect(children.item(1)?.textContent).toEqual('Episode 2Episode II - B test2222-22-22')
+  expect(children.item(2)?.textContent).toEqual('Episode 1Episode I - A test3333-33-33')
 })
 
 test('can sort by episode ID', async () => {
@@ -147,9 +147,9 @@ test('can sort by episode ID', async () => {
   /**
    * Check that the list is sorted by Year
    */
-  expect(children.item(2)?.textContent).toEqual('Episode 3C test1111-11-11')
-  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
-  expect(children.item(0)?.textContent).toEqual('Episode 1A test3333-33-33')
+  expect(children.item(2)?.textContent).toEqual('Episode 3Episode III - C test1111-11-11')
+  expect(children.item(1)?.textContent).toEqual('Episode 2Episode II - B test2222-22-22')
+  expect(children.item(0)?.textContent).toEqual('Episode 1Episode I - A test3333-33-33')
 })
 
 test('can filter by title', async () => {

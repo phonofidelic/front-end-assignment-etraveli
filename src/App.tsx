@@ -12,6 +12,7 @@ import { Grid } from '@mui/material';
 import SearchBar from 'components/SearchBar';
 import Toolbar from 'components/Toolbar';
 import SortMenu from 'components/SortMenu';
+import { romanize } from 'utils';
 
 interface StarWarsFilmsResponse {
   count: number,
@@ -51,7 +52,10 @@ function App() {
       try {
         response = await axios.get<StarWarsFilmsResponse>(`${STARWARS_MOVIES_ENDPOINT}/?format=json`)
         // console.log('Movies response:', response.data)
-        setEpisodes(response.data.results)
+        setEpisodes(response.data.results.map((episode) => ({
+          ...episode,
+          title: `Episode ${romanize(episode.episode_id)} - ${episode.title}`
+        })))
         setLoading(false)
       } catch (err) {
         // console.error('Could not fetch movies:', err)
