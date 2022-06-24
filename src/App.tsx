@@ -24,7 +24,7 @@ function App() {
   const [error, setError] = useState<Error | null>(null)
   const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null)
   const [filteredEpisodes, setFilteredEpisodes] = useState<Episode[]>([])
-  const [sortBy, setSortBy] = useState<SortBy>(SortBy.EPISODE)
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.YEAR)
 
   const handleSelectEpisode = (episode: Episode) => {
     setSelectedEpisode(episode)
@@ -65,7 +65,7 @@ function App() {
 
   useEffect(() => {
     setFilteredEpisodes(
-      episodes.sort((a, b) => (a['episode_id'] < b['episode_id'] ? -1 : 1))
+      episodes.sort((a, b) => (a['release_date'] < b['release_date'] ? -1 : 1))
     )
   }, [episodes])
 
