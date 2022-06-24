@@ -65,9 +65,9 @@ function App() {
 
   useEffect(() => {
     setFilteredEpisodes(
-      filteredEpisodes.sort((a, b) => (a[sortBy] < b[sortBy] ? -1 : 1))
+      episodes.sort((a, b) => (a['episode_id'] < b['episode_id'] ? -1 : 1))
     )
-  }, [filteredEpisodes, sortBy])
+  }, [episodes])
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
