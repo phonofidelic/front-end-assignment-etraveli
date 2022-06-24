@@ -23,7 +23,7 @@ export default function EpisodeDetail({ episode }: EpisodeDetailProps) {
     <div style={{ margin: 16 }}>
       <h1>{episode.title}</h1>
       <div><Typography>{episode.opening_crawl}</Typography></div>
-      <div style={{ marginTop: 8 }}><Typography>Director: {episode.director}</Typography></div>
+      <div style={{ marginTop: 8 }}><Typography>Directed by: {episode.director}</Typography></div>
     </div>
   )
 }
