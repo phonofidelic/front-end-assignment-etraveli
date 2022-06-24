@@ -65,15 +65,15 @@ function App() {
 
   useEffect(() => {
     setFilteredEpisodes(
-      episodes.sort((a, b) => (a[sortBy] < b[sortBy] ? -1 : 1))
+      episodes.sort((a, b) => (a['episode_id'] < b['episode_id'] ? -1 : 1))
     )
-  }, [episodes, sortBy])
+  }, [episodes])
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{error.message}</div>
 
   return (
-    <Grid container>
+    <Grid container style={{}}>
       <Grid item xs={12}>
         <Toolbar>
           <SortMenu sortBy={sortBy} onSortChange={handleSortChange} /><SearchBar onSearch={handleFilter} />
@@ -82,7 +82,12 @@ function App() {
       <Grid item md={6}>
         <EpisodesList episodes={filteredEpisodes} selectedEpisode={selectedEpisode} onEpisodeSelect={handleSelectEpisode} />
       </Grid>
-      <Grid item md={6}>
+      <Grid item md={6}
+        style={{
+          borderLeft: `1px solid #ccc`,
+          borderBottom: `1px solid #ccc`
+        }}
+      >
         <EpisodeDetail episode={selectedEpisode} />
       </Grid>
     </Grid>
