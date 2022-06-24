@@ -107,20 +107,20 @@ test('renders fetched data in a list', async () => {
  * Checks the order of items in the Episodes list.
  * https://stackoverflow.com/a/66139828
  */
-test('sorts by episode ID by default', async () => {
+test('sorts episodes by release date by default', async () => {
   render(<App />);
 
   await waitFor(() => screen.getByText(/a test/i))
 
-  const episodesContainer = screen.getByTestId('episodes-coontainer')
+  const episodesContainer = screen.getByTestId('episodes-container')
   const children = episodesContainer.children
 
-  expect(children.item(0)?.textContent).toEqual('Episode 1A test3333-33-33')
-  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
-  expect(children.item(2)?.textContent).toEqual('Episode 3C test1111-11-11')
+  expect(children.item(0)?.textContent).toEqual('Episode 3Episode III - C test1111-11-11')
+  expect(children.item(1)?.textContent).toEqual('Episode 2Episode II - B test2222-22-22')
+  expect(children.item(2)?.textContent).toEqual('Episode 1Episode I - A test3333-33-33')
 })
 
-test('can sort by release date', async () => {
+test('can sort by episode ID', async () => {
   render(<App />);
   const sortButton = await waitFor(() => screen.getByTestId('sort-button'))
 
@@ -139,17 +139,17 @@ test('can sort by release date', async () => {
   /**
    * Chose the Year option
    */
-  fireEvent.click(screen.getByText(/year/i))
+  fireEvent.click(screen.getByText(/Episode$/))
 
-  const episodesContainer = screen.getByTestId('episodes-coontainer')
+  const episodesContainer = screen.getByTestId('episodes-container')
   const children = episodesContainer.children
 
   /**
    * Check that the list is sorted by Year
    */
-  expect(children.item(2)?.textContent).toEqual('Episode 1A test3333-33-33')
-  expect(children.item(1)?.textContent).toEqual('Episode 2B test2222-22-22')
-  expect(children.item(0)?.textContent).toEqual('Episode 3C test1111-11-11')
+  expect(children.item(2)?.textContent).toEqual('Episode 3Episode III - C test1111-11-11')
+  expect(children.item(1)?.textContent).toEqual('Episode 2Episode II - B test2222-22-22')
+  expect(children.item(0)?.textContent).toEqual('Episode 1Episode I - A test3333-33-33')
 })
 
 test('can filter by title', async () => {

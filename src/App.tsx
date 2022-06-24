@@ -12,6 +12,7 @@ import { Grid } from '@mui/material';
 import SearchBar from 'components/SearchBar';
 import Toolbar from 'components/Toolbar';
 import SortMenu from 'components/SortMenu';
+import { romanize } from 'utils';
 
 interface StarWarsFilmsResponse {
   count: number,
@@ -24,7 +25,7 @@ function App() {
   const [error, setError] = useState<Error | null>(null)
   const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null)
   const [filteredEpisodes, setFilteredEpisodes] = useState<Episode[]>([])
-  const [sortBy, setSortBy] = useState<SortBy>(SortBy.EPISODE)
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.YEAR)
 
   const handleSelectEpisode = (episode: Episode) => {
     setSelectedEpisode(episode)
@@ -51,7 +52,10 @@ function App() {
       try {
         response = await axios.get<StarWarsFilmsResponse>(`${STARWARS_MOVIES_ENDPOINT}/?format=json`)
         // console.log('Movies response:', response.data)
-        setEpisodes(response.data.results)
+        setEpisodes(response.data.results.map((episode) => ({
+          ...episode,
+          title: `Episode ${romanize(episode.episode_id)} - ${episode.title}`
+        })))
         setLoading(false)
       } catch (err) {
         // console.error('Could not fetch movies:', err)
@@ -65,7 +69,7 @@ function App() {
 
   useEffect(() => {
     setFilteredEpisodes(
-      episodes.sort((a, b) => (a['episode_id'] < b['episode_id'] ? -1 : 1))
+      episodes.sort((a, b) => (a['release_date'] < b['release_date'] ? -1 : 1))
     )
   }, [episodes])
 
